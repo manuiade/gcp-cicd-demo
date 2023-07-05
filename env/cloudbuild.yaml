@@ -1,0 +1,11 @@
+steps:
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: bash
+    args:
+      - '-c'
+      - >
+        gcloud beta deploy releases create rel-$(date +%y%m%d-%s)
+        --delivery-pipeline=$_DELIVERY_PIPELINE
+        --region=$_REGION --annotations="commitId=$REVISION_ID" --to-target=cluster-$_ENV
+
+## Da qui si può aggiungere il merge verso prod per far partire anche la CI/CD per produzione

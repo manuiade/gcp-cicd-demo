@@ -1,0 +1,39 @@
+apiVersion: deploy.cloud.google.com/v1beta1
+kind: DeliveryPipeline
+metadata:
+ name: dp-demo
+description: main application pipeline
+serialPipeline:
+ stages:
+ - targetId: cluster-dev
+   profiles: []
+ - targetId: cluster-prod
+   profiles: []
+---
+
+apiVersion: deploy.cloud.google.com/v1beta1
+kind: Target
+metadata:
+ name: cluster-dev
+description: development cluster
+#requireApproval: false
+gke:
+ cluster: projects/formazione-manuel-iaderosa/locations/europe-west1-b/clusters/cloud-deploy-cicd-cluster-dev
+---
+
+apiVersion: deploy.cloud.google.com/v1beta1
+kind: Target
+metadata:
+ name: cluster-prod
+description: production cluster
+requireApproval: true
+gke:
+ cluster: projects/formazione-manuel-iaderosa/locations/europe-west1-b/clusters/cloud-deploy-cicd-cluster-prd
+
+executionConfigs:
+- defaultPool:
+    serviceAccount:
+    artifactStorage:
+  usages:
+  - RENDER
+  - DEPLOY
