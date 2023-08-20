@@ -18,7 +18,7 @@ metadata:
 description: development cluster
 #requireApproval: false
 gke:
- cluster: projects/formazione-manuel-iaderosa/locations/europe-west1-b/clusters/cloud-deploy-cicd-cluster-dev
+ cluster: projects/PROJECT_ID/locations/ZONE/clusters/DEV_CLUSTER
 ---
 
 apiVersion: deploy.cloud.google.com/v1beta1
@@ -28,7 +28,7 @@ metadata:
 description: production cluster
 requireApproval: true
 gke:
- cluster: projects/formazione-manuel-iaderosa/locations/europe-west1-b/clusters/cloud-deploy-cicd-cluster-prd
+ cluster: projects/PROJECT_ID/locations/ZONE/clusters/PRD_CLUSTER
 
 executionConfigs:
 - defaultPool:
